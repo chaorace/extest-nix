@@ -5,13 +5,12 @@
   '';
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-  inputs.flake-utils.url = "github:numtide/flake-utils";
   inputs.extest = {
     url = "github:Supreeeme/extest";
     flake = false;
   };
 
-  outputs = { self, flake-utils, nixpkgs, extest }:
+  outputs = { self, nixpkgs, extest }:
     let
       pkgs = import nixpkgs {
         system = "x86_64-linux";
