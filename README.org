@@ -1,0 +1,25 @@
+#+title: extest Nix Flake
+* Overview
+This is an unofficial Nix flake for [extest](https://github.com/Supreeeme/extest). `extest` is a hack which solves the Wayland-specific issue wherein any mouse cursor driven by Steam Input becomes invisible. Read more about the problem in the upstream issue: https://github.com/ValveSoftware/steam-for-linux/issues/4738
+* Usage
+1. Add this flake to your inputs
+   #+begin_nix options
+    inputs = {
+        #...
+        extest.url = "github:chaorace/nix-extest";
+    }
+   #+end_nix
+2. Enable the overlay
+   #+begin_nix options
+    nixpkgs = {
+        overlays = [
+            inputs.extest.overlays.default
+        ];
+   };
+   #+end_nix
+3. Append the shared object to Steam's LD_PRELOAD
+   #+begin_nix options
+    (steam.override {
+        extraProfile = ''export LD_PRELOAD=${pkgs.extest}/lib/libextest.so:$LD_PRELOAD'';
+    })
+   #+end_nix
