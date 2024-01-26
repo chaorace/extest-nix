@@ -6,7 +6,7 @@ This is an unofficial Nix flake for [[https://github.com/Supreeeme/extest][extes
    #+begin_src nix
     inputs = {
         #...
-        extest.url = "github:chaorace/nix-extest";
+        extest.url = "github:chaorace/extest-nix";
     }
    #+end_src
 2. Enable the overlay
